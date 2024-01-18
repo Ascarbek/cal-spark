@@ -7,3 +7,8 @@ interface ICompetition {
   incentive: string;
   category: string;
 }
+
+interface IUser {
+  displayName: string;
+  email: string;
+}

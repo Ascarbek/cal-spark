@@ -1,16 +1,17 @@
 <script lang="ts">
-  const onSignInClick = () => {
-    console.log('sign in');
-  };
+  import { CurrentUser } from '$components/_shared/Stores';
+  import { showLogin } from '$components/_shared/Modals';
 
-  let signed = false;
+  const onSignInClick = () => {
+    showLogin();
+  };
 </script>
 
-{#if signed}
+{#if $CurrentUser}
   <div class="flex items-center gap-2">
     <i class="text-[40px] text-main-500">
       <i class="fa-solid fa-user"></i>
-      <span>Ascarbek</span>
+      <span>{$CurrentUser.displayName}</span>
     </i>
   </div>
 {:else}

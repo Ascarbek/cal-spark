@@ -22,3 +22,4 @@ vite.config.ts.timestamp-*
 
 # user data
 /static/upload
+/data
