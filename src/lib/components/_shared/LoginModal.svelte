@@ -38,6 +38,6 @@
 
 <style>
   input {
-    @apply w-[300px] border border-neutral-300;
+    @apply w-[300px] rounded border border-neutral-300 px-2 py-1;
   }
 </style>

@@ -1,5 +1,5 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { saveConfirmationCode } from '$srv/UserData';
+import { saveConfirmationCode, saveUser } from '$srv/UserData';
 import { sendMail } from '$srv/sendMail';
 
 export const PUT: RequestHandler = async ({ request }) => {
@@ -9,6 +9,7 @@ export const PUT: RequestHandler = async ({ request }) => {
   }
 
   const code = crypto.randomUUID();
+  await saveUser({ email, displayName });
   await saveConfirmationCode({ email, code });
   await sendMail({ email, displayName, code });
 
