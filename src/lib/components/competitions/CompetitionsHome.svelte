@@ -3,8 +3,12 @@
   import CompetitionItemSmall from '$components/competitions/CompetitionItemSmall.svelte';
   import CategoryButton from '$components/competitions/CategoryButton.svelte';
   import CompetitionItem from '$components/competitions/CompetitionItem.svelte';
+  import { onMount } from 'svelte';
+  import { getCall } from '$api/BackendCalls';
 
-  let items: ICompetition[] = [
+  let items: ICompetition[] = [];
+
+  /*let items: ICompetition[] = [
     {
       name: 'DeCal: Micromouse Intro',
       description: 'Lorem Ipsum',
@@ -32,7 +36,11 @@
       tags: ['sponsored', 'python'],
       incentive: '$ 10 000',
     },
-  ];
+  ];*/
+
+  onMount(async () => {
+    items = await getCall<{}, ICompetition[]>(`/api/competition`, {});
+  });
 
   let categories: string[] = ['All Categories', 'Hackaton', 'Research'];
   let currentCategory: string = categories[0];
@@ -46,7 +54,9 @@
           <CompetitionItemSmall data="{item}"></CompetitionItemSmall>
         {/each}
       </div>
-      <CompetitionItemBanner data="{items[0]}"></CompetitionItemBanner>
+      {#if items.length}
+        <CompetitionItemBanner data="{items[0]}"></CompetitionItemBanner>
+      {/if}
     </div>
   </div>
 </div>

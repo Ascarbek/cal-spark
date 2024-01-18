@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { ChangeEventHandler } from 'svelte/elements';
-  import { postCall, uploadCall } from '$api/BackendCalls';
+  import { postCall, putCall, uploadCall } from '$api/BackendCalls';
   import { goto } from '$app/navigation';
   import TagsInput from '$components/_shared/TagsInput.svelte';
 
@@ -12,6 +12,7 @@
   let category = '';
   let incentive = '';
   let amount = '';
+  let tags: string[] = [];
 
   let categories = ['Hackaton', 'Research'];
   let incentives = ['Money Prize', 'Knowledge'];
@@ -27,15 +28,39 @@
     const resp = await uploadCall(`/api/upload-image`, formData);
     const id = resp.id;
 
-    console.log(id);
     if (fieldName === 'cover') {
       cover = `/upload/${id}`;
     }
     if (fieldName === 'picture') {
       picture = `/upload/${id}`;
     }
-    // await postCall(`/api/upload/process`, { file_id: id });
-    // await goto('/report');
+  };
+
+  const onCreateClick = async () => {
+    await putCall<
+      {
+        name: string;
+        description: string;
+        fullDescription: string;
+        picture: string;
+        cover: string;
+        tags: string[];
+        incentive: string;
+        category: string;
+      },
+      {}
+    >(`/api/competition`, {
+      name,
+      description,
+      fullDescription,
+      picture,
+      cover,
+      tags,
+      incentive: incentive === 'Money Prize' ? amount : incentive,
+      category,
+    });
+
+    await goto(`/competitions`);
   };
 </script>
 
@@ -81,13 +106,13 @@
     </div>
 
     <div class="flex flex-col gap-2">
-      <span>Description</span>
-      <textarea bind:value="{fullDescription}"></textarea>
+      <span>Short Description</span>
+      <input bind:value="{description}" />
     </div>
 
     <div class="flex flex-col gap-2">
       <span>Tags</span>
-      <TagsInput />
+      <TagsInput bind:data="{tags}" />
     </div>
 
     <div class="flex flex-col gap-2">
@@ -118,12 +143,12 @@
     {/if}
 
     <div class="flex flex-col gap-2">
-      <span>Short Description</span>
-      <input bind:value="{description}" />
+      <span>Description</span>
+      <textarea bind:value="{fullDescription}"></textarea>
     </div>
 
     <div class="flex items-center justify-center">
-      <button class="bg-main-400 px-12 py-2">Create Competition</button>
+      <button class="bg-main-400 px-12 py-2" on:click="{onCreateClick}">Create Competition</button>
     </div>
   </div>
 </div>
