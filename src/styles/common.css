@@ -1,0 +1,28 @@
+body {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+input,
+input:focus,
+button,
+button:focus,
+select,
+select:focus,
+textarea,
+textarea:focus {
+  outline: 0;
+}
+
+input,
+textarea {
+  background: transparent;
+}
+
+* {
+  touch-action: manipulation;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent; /* For some Androids */
+}
