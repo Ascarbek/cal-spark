@@ -2,10 +2,10 @@
   export let data: ICompetition;
 </script>
 
-<div class="relative h-[300px] w-[500px] overflow-hidden rounded-2xl border">
+<div class="relative h-[300px] w-[500px] overflow-hidden rounded-2xl border border-neutral-500">
   <img src="{data.cover}" alt="" class="max-h-full max-w-none object-none" />
   <div class="absolute bottom-0 right-0 pb-4 pr-8">
-    <div class="w-[250px] rounded-2xl border-2 border-black bg-neutral-200">
+    <div class="w-[250px] rounded-2xl border-2 border-neutral-500 bg-neutral-200">
       <div class="flex flex-col gap-2 px-2 py-2">
         <div class="flex items-center gap-2">
           <div class="h-[50px] w-[50px] flex-shrink-0 overflow-hidden rounded-full">

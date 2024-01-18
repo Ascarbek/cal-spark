@@ -1,4 +1,4 @@
-<div class="flex items-center gap-4">
+<div class="flex items-center gap-8 text-neutral-600">
   <a href="/competitions">Competitions</a>
   <a href="/projects">Projects</a>
   <a href="/bounties">Bounties</a>
@@ -8,6 +8,6 @@
 
 <style lang="postcss">
   a {
-    @apply hover:underline;
+    @apply text-neutral-700 hover:text-black hover:underline;
   }
 </style>

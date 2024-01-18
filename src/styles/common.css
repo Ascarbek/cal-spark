@@ -18,6 +18,10 @@ textarea {
   background: transparent;
 }
 
+button {
+  cursor: pointer;
+}
+
 * {
   touch-action: manipulation;
 }

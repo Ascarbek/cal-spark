@@ -1,6 +1,7 @@
 <script lang="ts">
   import { CurrentUser } from '$components/_shared/Stores';
   import { showLogin } from '$components/_shared/Modals';
+  import UserNav from '$components/navigation/UserNav.svelte';
 
   const onSignInClick = () => {
     showLogin();
@@ -8,12 +9,7 @@
 </script>
 
 {#if $CurrentUser}
-  <div class="flex items-center gap-2">
-    <i class="text-[40px] text-main-500">
-      <i class="fa-solid fa-user"></i>
-      <span>{$CurrentUser.displayName}</span>
-    </i>
-  </div>
+  <UserNav />
 {:else}
   <div class="flex items-center gap-4">
     <button on:click="{onSignInClick}">Sign In</button>
