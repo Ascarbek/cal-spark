@@ -1,10 +1,5 @@
 <script lang="ts">
-	let name = '';
-	let desc = '';
+  import CreateCompetitionPage from '$components/competitions/CreateCompetitionPage.svelte';
 </script>
 
-<div class="flex flex-col gap-4">
-	<input class="border"  bind:value={name}>
-
-	<textarea  class="border" bind:value={desc}></textarea>
-</div>
+<CreateCompetitionPage />
