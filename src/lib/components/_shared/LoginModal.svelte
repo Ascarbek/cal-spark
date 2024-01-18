@@ -1,5 +1,31 @@
 <script lang="ts">
-  import { ShowLoginModal } from '$components/_shared/Stores';
+  import { CurrentUser, ShowLoginModal } from '$components/_shared/Stores';
+  import { postCall } from '$api/BackendCalls';
+  import { goto } from '$app/navigation';
+
+  let email = '';
+  let password = '';
+
+  const onLoginClick = async () => {
+    const resp = await postCall<
+      { email: string; password: string },
+      { valid: boolean; displayName?: string; email?: string }
+    >(`/api/user/auth`, {
+      email,
+      password,
+    });
+    const { valid, displayName } = resp;
+    if (valid && displayName) {
+      $CurrentUser = {
+        email,
+        displayName,
+      };
+      await goto('/');
+      $ShowLoginModal = false;
+    } else {
+      alert('password is incorrect or user is not registered');
+    }
+  };
 </script>
 
 <div class="fixed inset-0 backdrop-blur" on:click="{() => ($ShowLoginModal = false)}">
@@ -11,16 +37,16 @@
         <div class="flex flex-col gap-2">
           <div class="flex flex-col gap-1">
             <span>Email</span>
-            <input type="text" />
+            <input bind:value="{email}" type="text" />
           </div>
           <div class="flex flex-col gap-1">
             <span>Password</span>
-            <input type="password" />
+            <input bind:value="{password}" type="password" />
           </div>
         </div>
 
         <div class="flex flex-col gap-2">
-          <div class="rounded bg-main-400 py-2 text-center">Sign In</div>
+          <div on:click="{onLoginClick}" class="rounded bg-main-400 py-2 text-center">Sign In</div>
           <div class="text-right text-xs text-neutral-500">
             Don't have an account yet? <a
               href="/register"
