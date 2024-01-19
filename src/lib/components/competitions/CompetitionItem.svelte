@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { ICompetition } from '$components/_shared/Types';
+
   export let data: ICompetition;
 </script>
 

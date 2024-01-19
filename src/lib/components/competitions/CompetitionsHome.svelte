@@ -5,6 +5,7 @@
   import CompetitionItem from '$components/competitions/CompetitionItem.svelte';
   import { onMount } from 'svelte';
   import { getCall } from '$api/BackendCalls';
+  import type { ICompetition } from '$components/_shared/Types';
 
   let items: ICompetition[] = [];
 

@@ -14,7 +14,7 @@
         <i class="fa-solid fa-user"></i>
       </i>
     </div>
-    <span class="text-neutral-600">{$CurrentUser.displayName}</span>
+    <span class="text-neutral-600">{$CurrentUser?.displayName}</span>
   </button>
   {#if showUserMenu}
     <UserMenu on:close="{() => (showUserMenu = false)}" />

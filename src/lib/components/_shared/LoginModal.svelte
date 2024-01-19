@@ -2,6 +2,8 @@
   import { CurrentUser, ShowLoginModal } from '$components/_shared/Stores';
   import { postCall } from '$api/BackendCalls';
   import { goto } from '$app/navigation';
+  import { authorizationKey } from '$components/_shared/constants';
+  import type { IUser } from '$components/_shared/Types';
 
   let email = '';
   let password = '';
@@ -9,17 +11,17 @@
   const onLoginClick = async () => {
     const resp = await postCall<
       { email: string; password: string },
-      { valid: boolean; displayName?: string; email?: string }
+      { valid: boolean; data: IUser | undefined; accessToken: string | undefined }
     >(`/api/user/auth`, {
       email,
       password,
     });
-    const { valid, displayName } = resp;
-    if (valid && displayName) {
+    const { valid, data, accessToken } = resp;
+    if (valid && data && accessToken) {
       $CurrentUser = {
-        email,
-        displayName,
+        ...data,
       };
+      localStorage.setItem(authorizationKey, accessToken);
       await goto('/');
       $ShowLoginModal = false;
     } else {
@@ -62,7 +64,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   input {
     @apply w-[300px] rounded border border-neutral-300 px-2 py-1;
   }

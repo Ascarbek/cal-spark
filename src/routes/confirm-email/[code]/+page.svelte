@@ -80,7 +80,7 @@
   </div>
 {/if}
 
-<style>
+<style lang="postcss">
   input {
     @apply w-[300px] rounded border border-neutral-300 px-2 py-1;
   }

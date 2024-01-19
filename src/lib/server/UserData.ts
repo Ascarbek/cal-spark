@@ -1,4 +1,5 @@
 import { getTableRows, saveTableRows } from '$srv/Database';
+import type { IUser } from '$components/_shared/Types';
 
 const getUserRows = async () => {
   return getTableRows('users.json');
@@ -16,14 +17,13 @@ const saveConfirmationRows = async (rows: any) => {
   await saveTableRows(rows, 'user_confirmation.json');
 };
 
-export const saveUser = async (params: { email: string; displayName: string }) => {
-  const { email, displayName } = params;
+export const saveUser = async (params: IUser) => {
+  const { email } = params;
 
   const rows = await getUserRows();
 
   rows[email] = {
-    displayName,
-    email,
+    ...params,
   };
 
   await saveUserRows(rows);

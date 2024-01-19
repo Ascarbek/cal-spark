@@ -1,4 +1,5 @@
 import { getTableRows, saveTableRows } from '$srv/Database';
+import type { ICompetition } from '$components/_shared/Types';
 
 const getCompetitionRows = async () => {
   return getTableRows('competitions.json');

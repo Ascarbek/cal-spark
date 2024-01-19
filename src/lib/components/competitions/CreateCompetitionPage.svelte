@@ -17,7 +17,7 @@
   let categories = ['Hackaton', 'Research'];
   let incentives = ['Money Prize', 'Knowledge'];
 
-  const onFileSelect = async (e: { target: EventTarget }, fieldName: string) => {
+  const onFileSelect = async (e: any, fieldName: string) => {
     const files = (e.target as HTMLInputElement).files;
     if (!files || files.length === 0) return;
     const file = files[0];
@@ -153,7 +153,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   input,
   textarea,
   select {
