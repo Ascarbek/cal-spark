@@ -24,6 +24,9 @@ export interface IProject {
   name: string;
   description: string;
   fullDescription: string;
-  cover: string;
   picture: string;
+  cover: string;
+  tags: string[];
+  incentive: string;
+  category: string;
 }

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { ChangeEventHandler } from 'svelte/elements';
   import { postCall, putCall, uploadCall } from '$api/BackendCalls';
   import { goto } from '$app/navigation';
   import TagsInput from '$components/_shared/TagsInput.svelte';
@@ -49,7 +48,7 @@
         category: string;
       },
       {}
-    >(`/api/competition`, {
+    >(`/api/project`, {
       name,
       description,
       fullDescription,
@@ -60,7 +59,7 @@
       category,
     });
 
-    await goto(`/competitions`);
+    await goto(`/projects`);
   };
 </script>
 
@@ -148,7 +147,7 @@
     </div>
 
     <div class="flex items-center justify-center">
-      <button class="bg-main-400 px-12 py-2" on:click="{onCreateClick}">Create Competition</button>
+      <button class="bg-main-400 px-12 py-2" on:click="{onCreateClick}">Create Project</button>
     </div>
   </div>
 </div>

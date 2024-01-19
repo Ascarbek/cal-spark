@@ -83,30 +83,32 @@
       </div>
     </div>
 
-    <div class="relative">
-      <div class="absolute -top-[45px] left-[200px]">
-        <div class="group relative h-[90px] w-[90px] overflow-hidden rounded-full border border-neutral-500 bg-white">
-          {#if $CurrentUser.picture?.length}
-            <img
-              alt=""
-              src="{$CurrentUser.picture}"
-              class="absolute inset-0 m-auto max-h-full max-w-full object-cover"
-            />
-          {/if}
-          <div
-            class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          >
-            <i class="text-[40px] text-white">
-              <i class="fa-solid fa-cloud-arrow-up"></i>
-            </i>
+    <div class="flex pt-[50px]">
+      <div class="relative flex flex-1 flex-col gap-4">
+        <div class="absolute inset-x-0 mx-auto w-[90px]">
+          <div class="absolute -top-[96px]">
+            <div
+              class="group relative h-[90px] w-[90px] overflow-hidden rounded-full border border-neutral-500 bg-white"
+            >
+              {#if $CurrentUser.picture?.length}
+                <img
+                  alt=""
+                  src="{$CurrentUser.picture}"
+                  class="absolute inset-0 m-auto max-h-full max-w-full object-cover"
+                />
+              {/if}
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              >
+                <i class="text-[40px] text-white">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </i>
+              </div>
+              <input type="file" on:change="{(e) => onFileSelect(e, 'picture')}" class="absolute inset-0 opacity-0" />
+            </div>
           </div>
-          <input type="file" on:change="{(e) => onFileSelect(e, 'picture')}" class="absolute inset-0 opacity-0" />
         </div>
-      </div>
-    </div>
 
-    <div class="flex pt-16">
-      <div class="flex w-[490px] flex-col gap-4">
         <div class="flex items-center justify-center text-2xl">
           <div class="group relative" on:click="{editDisplayName}">
             {#if editingDisplayName}
@@ -126,7 +128,10 @@
             </button>
           </div>
         </div>
-        <div class="group relative min-h-[200px]" on:click="{editBio}">
+        <div
+          class="relative mr-8 min-h-[150px] rounded-2xl p-2 transition-colors duration-300 hover:bg-neutral-200"
+          on:click="{editBio}"
+        >
           {#if editingBio}
             <textarea
               bind:this="{bioEl}"
@@ -137,13 +142,28 @@
           {:else}
             {$CurrentUser?.bio ?? ''}
           {/if}
-          <button
-            class="absolute left-full px-4 text-[20px] text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          >
-            <i class="fa-solid fa-pen"></i>
-          </button>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="tab-item">Competitions</div>
+          <div class="tab-item">Projects</div>
+          <div class="tab-item">Bounties</div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div>Latest Contributions</div>
+        <div class="flex flex-col gap-2">
+          <div class="rounded-2xl bg-neutral-200 py-4"></div>
+          <div class="rounded-2xl bg-neutral-200 py-4"></div>
+          <div class="rounded-2xl bg-neutral-200 py-4"></div>
         </div>
       </div>
     </div>
   </div>
 {/if}
+
+<style lang="postcss">
+  .tab-item {
+    @apply text-2xl font-semibold text-neutral-500;
+  }
+</style>
