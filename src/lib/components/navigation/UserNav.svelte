@@ -14,7 +14,9 @@
         <i class="fa-solid fa-user"></i>
       </i>
     </div>
-    <span class="text-neutral-600">{$CurrentUser?.displayName}</span>
+    <span class="max-w-[95px] overflow-hidden text-ellipsis whitespace-nowrap text-neutral-600">
+      {$CurrentUser?.displayName}
+    </span>
   </button>
   {#if showUserMenu}
     <UserMenu on:close="{() => (showUserMenu = false)}" />

@@ -3,7 +3,8 @@
   <a href="/projects">Projects</a>
   <a href="/bounties">Bounties</a>
   <a href="/events">Events</a>
-  <a href="/competitions/create">Create</a>
+<!--  <a href="/competitions/create">New Competition</a>-->
+<!--  <a href="/projects/create">New Project</a>-->
 </div>
 
 <style lang="postcss">
