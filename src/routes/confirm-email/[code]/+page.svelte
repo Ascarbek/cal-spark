@@ -4,6 +4,8 @@
   import { postCall } from '$api/BackendCalls';
   import { CurrentUser } from '$components/_shared/Stores';
   import { goto } from '$app/navigation';
+  import type { IUser } from '$components/_shared/Types';
+  import { authorizationKey } from '$components/_shared/constants';
 
   let confirmed = false;
   let error = false;
@@ -41,7 +43,23 @@
       email: $CurrentUser?.email ?? '',
       password: newPassword,
     });
-    await goto('/');
+    const resp = await postCall<
+      { email: string; password: string },
+      { valid: boolean; data: IUser | undefined; accessToken: string | undefined }
+    >(`/api/user/auth`, {
+      email: $CurrentUser?.email ?? '',
+      password: newPassword,
+    });
+
+    const { valid, data, accessToken } = resp;
+
+    if (valid && data && accessToken) {
+      $CurrentUser = {
+        ...data,
+      };
+      localStorage.setItem(authorizationKey, accessToken);
+      await goto('/');
+    }
   };
 </script>
 
