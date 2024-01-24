@@ -3,7 +3,6 @@ import { env } from '$env/dynamic/private';
 
 export const sendMail = async (params: { email: string; displayName: string; code: string }) => {
   const { email, displayName, code } = params;
-  console.log(env.APP_PASSWORD);
   const transporter = nodeMailer.createTransport({
     service: 'Gmail',
     host: 'smtp.gmail.com',
@@ -11,7 +10,7 @@ export const sendMail = async (params: { email: string; displayName: string; cod
     secure: true,
     auth: {
       user: 'ascarbek@gmail.com',
-      pass: 'pfmq lzcm zjar tomk',
+      pass: env.APP_PASSWORD,
     },
   });
 
