@@ -22,7 +22,7 @@ export const sendMail = async (params: { email: string; displayName: string; cod
 Hello ${displayName}!
 
 To complete your registration with CalSpark you have to click on the link below:
-http://localhost:5173/confirm-email/${code}
+${env.ORIGIN}/confirm-email/${code}
 `,
   });
 };
