@@ -10,16 +10,14 @@
 
   const onRegisterClick = async () => {
     if (!browser) return;
-    /*
     await putCall<{ email: string; displayName: string }>(`/api/user`, {
       email,
       displayName,
     });
 
     await goto(`/confirmation-info`);
-    */
 
-    await putCall<{ email: string; displayName: string; password: string }, {}>(`/api/user/temp-register`, {
+    /*await putCall<{ email: string; displayName: string; password: string }, {}>(`/api/user/temp-register`, {
       email,
       displayName,
       password,
@@ -30,7 +28,7 @@
       displayName,
     };
 
-    await goto(`/`);
+    await goto(`/`);*/
   };
 </script>
 
