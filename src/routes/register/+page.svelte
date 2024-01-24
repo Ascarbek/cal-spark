@@ -44,10 +44,10 @@
         <span>Display Name</span>
         <input bind:value="{displayName}" />
       </div>
-      <div class="flex flex-col gap-2">
+      <!--<div class="flex flex-col gap-2">
         <span>Password</span>
         <input bind:value="{password}" />
-      </div>
+      </div>-->
       <button class="rounded bg-main-400 py-2" on:click="{onRegisterClick}">Registration</button>
     </div>
   </div>
