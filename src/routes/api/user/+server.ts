@@ -1,6 +1,7 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { saveConfirmationCode, saveUser } from '$srv/UserData';
+import { getAllUsers, getUser, saveConfirmationCode, saveUser } from '$srv/UserData';
 import { sendMail } from '$srv/sendMail';
+import type { IUser } from '$components/_shared/Types';
 
 export const PUT: RequestHandler = async ({ request }) => {
   const { email, displayName } = await request.json();
@@ -15,5 +16,21 @@ export const PUT: RequestHandler = async ({ request }) => {
 
   return json({
     success: true,
+  });
+};
+
+export const GET: RequestHandler = async () => {
+  const raw: any[] = await getAllUsers();
+  let result: IUser[] = [];
+  result = raw.map<IUser>((row) => ({
+    email: row.email,
+    displayName: row.displayName,
+    bio: row.bio,
+    picture: row.picture,
+    cover: row.cover,
+  }));
+
+  return json({
+    rows: result,
   });
 };

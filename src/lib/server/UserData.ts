@@ -17,6 +17,11 @@ const saveConfirmationRows = async (rows: any) => {
   await saveTableRows(rows, 'user_confirmation.json');
 };
 
+export const getAllUsers = async () => {
+  const map = await getUserRows();
+  return Object.keys(map).map((id) => map[id]);
+};
+
 export const saveUser = async (params: IUser) => {
   const { email } = params;
 

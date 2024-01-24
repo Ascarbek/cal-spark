@@ -1,0 +1,1 @@
+export type TTableRows<T> = (T)[];
