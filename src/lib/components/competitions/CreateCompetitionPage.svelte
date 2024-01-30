@@ -3,6 +3,7 @@
   import { postCall, putCall, uploadCall } from '$api/BackendCalls';
   import { goto } from '$app/navigation';
   import TagsInput from '$components/_shared/TagsInput.svelte';
+  import { PUBLIC_UPLOADS_PATH } from '$env/static/public';
 
   let name = '';
   let description = '';
@@ -29,10 +30,10 @@
     const id = resp.id;
 
     if (fieldName === 'cover') {
-      cover = `/upload/${id}`;
+      cover = `${PUBLIC_UPLOADS_PATH}/${id}`;
     }
     if (fieldName === 'picture') {
-      picture = `/upload/${id}`;
+      picture = `${PUBLIC_UPLOADS_PATH}/${id}`;
     }
   };
 

@@ -3,6 +3,7 @@
   import { postCall, uploadCall } from '$api/BackendCalls';
   import { tick } from 'svelte';
   import type { IUser } from '$components/_shared/Types';
+  import { PUBLIC_UPLOADS_PATH } from '$env/static/public';
 
   let displayName = '';
   let editingDisplayName = false;
@@ -26,10 +27,10 @@
     const id = resp.id;
 
     if (fieldName === 'cover') {
-      $CurrentUser.cover = `/upload/${id}`;
+      $CurrentUser.cover = `${PUBLIC_UPLOADS_PATH}/${id}`;
     }
     if (fieldName === 'picture') {
-      $CurrentUser.picture = `/upload/${id}`;
+      $CurrentUser.picture = `${PUBLIC_UPLOADS_PATH}/${id}`;
     }
     await postCall<IUser, {}>(`/api/user/edit`, $CurrentUser);
   };

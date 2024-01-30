@@ -9,36 +9,6 @@
 
   let items: ICompetition[] = [];
 
-  /*let items: ICompetition[] = [
-    {
-      name: 'DeCal: Micromouse Intro',
-      description: 'Lorem Ipsum',
-      cover: '/upload/Dece.png',
-      picture: '/upload/DefiLand.png',
-      category: 'hackaton',
-      tags: ['sponsored', 'python'],
-      incentive: '$ 10 000',
-    },
-    {
-      name: 'DeCal: Micromouse Intro',
-      description: 'Lorem Ipsum',
-      cover: '/upload/Dece.png',
-      picture: '/upload/DefiLand.png',
-      category: 'hackaton',
-      tags: ['sponsored', 'python'],
-      incentive: '$ 10 000',
-    },
-    {
-      name: 'DeCal: Micromouse Intro',
-      description: 'Lorem Ipsum',
-      cover: '/upload/Dece.png',
-      picture: '/upload/DefiLand.png',
-      category: 'hackaton',
-      tags: ['sponsored', 'python'],
-      incentive: '$ 10 000',
-    },
-  ];*/
-
   onMount(async () => {
     items = await getCall<{}, ICompetition[]>(`/api/competition`, {});
   });
