@@ -1,10 +1,12 @@
 <script lang="ts">
   import { CurrentUser } from '$components/_shared/Stores';
   import { createEventDispatcher } from 'svelte';
+  import { AUTHORIZATION_KEY } from '$components/_shared/constants';
 
   const dispatch = createEventDispatcher();
 
   const onLogoutClick = () => {
+    localStorage.removeItem(AUTHORIZATION_KEY);
     $CurrentUser = undefined;
   };
 

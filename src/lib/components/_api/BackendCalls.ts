@@ -1,9 +1,9 @@
 import axios from 'axios';
 import type { AxiosResponse } from 'axios';
-import { authorizationKey } from '../_shared/constants';
+import { AUTHORIZATION_KEY } from '../_shared/constants';
 
 export const getCall = async <P, R>(path: string, params: P, authorization = false) => {
-  const token = localStorage.getItem(authorizationKey);
+  const token = localStorage.getItem(AUTHORIZATION_KEY);
   const resp = await axios.get<R, AxiosResponse<R>, P>(path, {
     ...(authorization
       ? {
@@ -20,7 +20,7 @@ export const getCall = async <P, R>(path: string, params: P, authorization = fal
 };
 
 export const putCall = async <P, R>(path: string, params: P, authorization = true) => {
-  const token = localStorage.getItem(authorizationKey);
+  const token = localStorage.getItem(AUTHORIZATION_KEY);
   const resp = await axios.put<R, AxiosResponse<R>, P>(
     path,
     {
@@ -38,7 +38,7 @@ export const putCall = async <P, R>(path: string, params: P, authorization = tru
 };
 
 export const postCall = async <P, R>(path: string, params: P, authorization = true) => {
-  const token = localStorage.getItem(authorizationKey);
+  const token = localStorage.getItem(AUTHORIZATION_KEY);
   const resp = await axios.post<R, AxiosResponse<R>, P>(
     path,
     {
@@ -56,7 +56,7 @@ export const postCall = async <P, R>(path: string, params: P, authorization = tr
 };
 
 export const patchCall = async <P, R>(path: string, params: P, authorization = true) => {
-  const token = localStorage.getItem(authorizationKey);
+  const token = localStorage.getItem(AUTHORIZATION_KEY);
   const resp = await axios.patch<R, AxiosResponse<R>, P>(
     path,
     {
@@ -74,7 +74,7 @@ export const patchCall = async <P, R>(path: string, params: P, authorization = t
 };
 
 export const deleteCall = async <P, R>(path: string, params: P, authorization = true) => {
-  const token = localStorage.getItem(authorizationKey);
+  const token = localStorage.getItem(AUTHORIZATION_KEY);
   const resp = await axios.delete<R, AxiosResponse<R>, P>(path, {
     ...(authorization
       ? {
@@ -91,7 +91,7 @@ export const deleteCall = async <P, R>(path: string, params: P, authorization = 
 };
 
 export const uploadCall = async (path: string, params: FormData, authorization = true) => {
-  const token = localStorage.getItem(authorizationKey);
+  const token = localStorage.getItem(AUTHORIZATION_KEY);
   const resp = await axios.put(
     path,
     params,

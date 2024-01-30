@@ -7,12 +7,12 @@
   import LoginModal from '$components/_shared/LoginModal.svelte';
   import { onMount } from 'svelte';
   import { postCall } from '$api/BackendCalls';
-  import { authorizationKey } from '$components/_shared/constants';
+  import { AUTHORIZATION_KEY } from '$components/_shared/constants';
   import type { IUser } from '$components/_shared/Types';
 
   onMount(async () => {
     const response = await postCall<{ token: string }, { valid: boolean; data: IUser }>(`/api/user/validate-token`, {
-      token: localStorage.getItem(authorizationKey) || '',
+      token: localStorage.getItem(AUTHORIZATION_KEY) || '',
     });
     if (response.valid && response.data) {
       $CurrentUser = {

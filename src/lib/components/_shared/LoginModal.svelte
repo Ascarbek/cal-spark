@@ -2,7 +2,7 @@
   import { CurrentUser, ShowLoginModal } from '$components/_shared/Stores';
   import { postCall } from '$api/BackendCalls';
   import { goto } from '$app/navigation';
-  import { authorizationKey } from '$components/_shared/constants';
+  import { AUTHORIZATION_KEY } from '$components/_shared/constants';
   import type { IUser } from '$components/_shared/Types';
 
   let email = '';
@@ -21,7 +21,7 @@
       $CurrentUser = {
         ...data,
       };
-      localStorage.setItem(authorizationKey, accessToken);
+      localStorage.setItem(AUTHORIZATION_KEY, accessToken);
       await goto('/');
       $ShowLoginModal = false;
     } else {

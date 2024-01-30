@@ -5,7 +5,7 @@
   import { CurrentUser } from '$components/_shared/Stores';
   import { goto } from '$app/navigation';
   import type { IUser } from '$components/_shared/Types';
-  import { authorizationKey } from '$components/_shared/constants';
+  import { AUTHORIZATION_KEY } from '$components/_shared/constants';
 
   let confirmed = false;
   let error = false;
@@ -57,7 +57,7 @@
       $CurrentUser = {
         ...data,
       };
-      localStorage.setItem(authorizationKey, accessToken);
+      localStorage.setItem(AUTHORIZATION_KEY, accessToken);
       await goto('/');
     }
   };
